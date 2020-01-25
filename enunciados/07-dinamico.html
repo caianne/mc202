@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0039)https://bug.ic.unicamp.br/cgi/sqtpm.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>sqtpm</title>
+<link href="https://bug.ic.unicamp.br/cgi/icon.png" rel="icon" type="image/png">
+<link rel="stylesheet" type="text/css" href="./07-dinamico_files/sqtpm.css">
+</head>
+<body>
+<div id="wrapper"><div id="sidebar"><h1>sqtpm</h1><p style="margin-top:-15px"><small>[261026]</small></p><a href="javascript:;" onclick="window.history.go(-1); return false;">voltar</a></div><div id="content"><form method="post" action="https://bug.ic.unicamp.br/cgi/sqtpm.cgi" enctype="multipart/form-data" name="sqtpm"><script type="text/javascript" src="./07-dinamico_files/sqtpm.js"></script><input type="hidden" name="action"><input type="hidden" name="arg1"><input type="hidden" name="arg2"><input type="hidden" name="arg3"><b>Trabalho:</b> 07-dinamico<table><tbody><tr><td style="vertical-align:top">Linguagens: C<br>Data de abertura: 2019/09/26 10:00:00<br>Data limite para envio: 2019/10/02 23:59:59 (encerrado)<p><b>Último envio:</b> <a href="javascript:;" onclick="wrap(&#39;rep&#39;,&#39;07-dinamico&#39;);">14%</a> em 2019/10/02 23:59:55<br>Envios: 15</p></td></tr></tbody></table><p></p><hr><h1>Vetor dinâmico</h1>
+
+Vamos dizer que um conjunto de registros está em <i>seqüência</i> se
+a ordem relativa entre eles é importante.  Por exemplo, pessoas em uma
+fila de atendimento formam uma seqüência.
+
+<p>
+Neste trabalho você deve implementar um vetor dinâmico para armazenar
+uma seqüência de números inteiros.  O vetor dinâmico deve permitir
+inserção no início e no final da seqüência, remoção do primeiro e do
+último elementos e recuperação do primeiro e do último elementos.
+
+</p><p>
+A seqüência deve ser implementada de forma circular, isto é, o
+primeiro elemento dela deve poder estar em qualquer posição do vetor.
+Dessa forma, qualquer uma dessas operações acima poderá ser realizada
+em tempo constante, não é necessário fazer deslocamento dos dados
+armazenados no vetor para a esquerda ou para a direita.
+
+</p><p>
+Por exemplo, a seqüência circular de chaves inteiras [2,9,5,7] pode
+estar armazenada de várias formas em um vetor de tamanho 8:
+
+</p><pre>2 9 5 7 _ _ _ _
+_ _ 2 9 5 7 _ _
+_ _ _ _ 2 9 5 7
+5 7 _ _ _ _ 2 9 
+9 5 7 _ _ _ _ 2 
+</pre>
+
+Em todas elas, o primeiro elemento da seqüência é o 2 e o último é o
+7.  Observe que os números não estão ordenados, mas a ordem relativa
+entre eles deve ser preservada.  Eles podem representar o número da
+conta das tais pessoas na fila de atendimento, por exemplo.
+
+
+
+<p> Se um vetor circular contém a seqüência
+
+</p><pre>2 9 5 7 _ _ _ _
+</pre>
+
+e o número 6 é adicionado ao início da seqüência, então o vetor fica assim:
+
+<pre>2 9 5 7 _ _ _ 6
+</pre>
+
+Depois se o número 8 é adicionado ao início da seqüência,  o
+vetor deve ficar assim:
+
+<pre>2 9 5 7 _ _ 8 6
+</pre>
+
+Se o número 7 é removido do fim da seqüência,  o
+vetor deve ficar assim:
+
+<pre>2 9 5 _ _ _ 8 6
+</pre>
+
+E se o número 1 é adicionado ao fim da seqüência,  o
+vetor deve ficar assim:
+
+<pre>2 9 5 1 _ _ 8 6
+</pre>
+
+
+
+<p>
+A política de redimensionamento do vetor deve ser dobrar quando
+estiver cheio e reduzir à metade quando estiver 1/4 ocupado.  Dessa
+forma, durante o processamento, o número de posições vazias do vetor
+não deveria exceder 3n, onde n é o número de posições ocupadas. 
+
+</p><p>
+Obviamente, quando o vetor for redimensionado, o conteúdo da seqüência
+e a ordem relativa entre os elementos da seqüência devem ser
+preservados.
+
+<!--
+<p>
+O vetor dinâmico deve ser implementado em um par de arquivos c e h
+separados.  O arquivo h deve conter as declarações do tipo de dados e
+das operações sobre o vetor dinâmico.  O arquivo c deve definir as
+funções.  O programa principal deve estar em um terceiro arquivo c.
+-->
+
+</p><h3>Entrada</h3> 
+
+A entrada é composta por uma sucessão de comandos, um por linha.  Os
+possíveis comandos estão descritos abaixo.  
+
+<ul>
+
+<li>
+<pre>insert-first inteiro
+</pre>
+
+<p>
+Insere um inteiro no início da seqüência. 
+
+</p></li><li>
+<pre>remove-first
+</pre>
+
+<p>
+Remove o inteiro no início da seqüência.  Se a seqüência estiver
+vazia, não faz nada.  
+
+</p></li><li>
+<pre>print-first
+</pre>
+
+<p>
+Imprime o inteiro no início da seqüência.  Se a seqüência estiver
+vazia, não faz nada.
+
+</p></li><li>
+<pre>insert-last inteiro
+</pre>
+
+<p>
+Insere um inteiro no fim da seqüência. 
+
+</p></li><li>
+<pre>remove-last
+</pre>
+
+<p>
+Remove o inteiro no fim da seqüência. Se a seqüência estiver
+vazia, não faz nada.
+
+</p></li><li>
+<pre>print-last
+</pre>
+
+<p>
+Imprime o inteiro no fim da seqüência.  Se a seqüência estiver
+vazia, não faz nada.
+
+
+</p></li><li>
+<pre>is-empty
+</pre>
+
+<p>
+Imprime "yes" se a seqüência estiver vazia e "no" se não estiver.
+
+</p></li><li>
+<pre>exit
+</pre>
+
+<p>
+Termina o programa.  
+</p></li></ul>
+
+<p>
+Nenhuma função deve mover os elementos do vetor para a direita ou para a esquerda.
+
+
+</p><h3>Saída</h3> 
+A saída deve conter as linhas geradas pelos comandos print-first,
+print-last e is-empty.
+
+<h3>Exemplo</h3>
+
+<p>
+Entrada:
+</p><pre>is-empty
+insert-last 101
+insert-last 51
+insert-last 13
+is-empty
+print-last
+print-first
+remove-first
+remove-last
+print-first
+print-last
+exit
+</pre>
+
+Saída:
+<pre>yes
+no
+13
+101
+51
+51
+</pre>
+
+<p>
+Requisitos adicionais:
+
+</p><ul>
+<li>
+Cada funcionalidade deve ser implementada por uma função separada.  
+</li><li>
+A leitura da entrada deve ser feita na função main, que chama as
+funções para cada funcionalidade.
+</li><li>
+Antes de terminar o programa deve liberar a memória ocupada pelo
+vetor dinâmico.
+</li></ul>
+
+<p>
+Sugestões:
+
+</p><ul>
+<li>
+Comece fazendo uma função main que lê a entrada e apenas imprime uma
+mensagem para cada comando.  Depois implemente as funcionalidades para
+cada operação no vetor dinâmico.
+
+
+</li><li>
+Uma boa forma de organizar programas desse tipo é usando uma struct
+para representar a estrutura de dados.  Nesse struct ficam todos os
+dados que compõem o vetor dinâmico, como o array, os índices para o
+início e fim, o tamanho e outros que forem necessários.
+
+</li><li>
+É interessante organizar o programa em três arquivos, um .h com as
+declarações de tipos e funções que manipulam o vetor dinâmico, um .c
+com as implementações das funções do vetor dinâmico e um outro .c com
+a função main e outras funções não relacionadas com o vetor dinâmico.
+
+</li></ul>
+
+
+
+<hr></form></div></div>
+
+</body></html>

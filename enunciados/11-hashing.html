@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0039)https://bug.ic.unicamp.br/cgi/sqtpm.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>sqtpm</title>
+<link href="https://bug.ic.unicamp.br/cgi/icon.png" rel="icon" type="image/png">
+<link rel="stylesheet" type="text/css" href="./11-hashing_files/sqtpm.css">
+</head>
+<body>
+<div id="wrapper"><div id="sidebar"><h1>sqtpm</h1><p style="margin-top:-15px"><small>[261026]</small></p><a href="javascript:;" onclick="window.history.go(-1); return false;">voltar</a></div><div id="content"><form method="post" action="https://bug.ic.unicamp.br/cgi/sqtpm.cgi" enctype="multipart/form-data" name="sqtpm"><script type="text/javascript" src="./11-hashing_files/sqtpm.js"></script><input type="hidden" name="action"><input type="hidden" name="arg1"><input type="hidden" name="arg2"><input type="hidden" name="arg3"><b>Trabalho:</b> 11-hashing<table><tbody><tr><td style="vertical-align:top">Linguagens: C<br>Data de abertura: 2019/10/30 12:00:00<br>Data limite para envio: 2019/11/06 23:59:59 (encerrado)<p><b>Último envio:</b> <a href="javascript:;" onclick="wrap(&#39;rep&#39;,&#39;11-hashing&#39;);">86%</a> em 2019/11/06 20:33:58<br>Envios: 7</p></td></tr></tbody></table><p></p><hr><h1>Hashing de cadeias</h1>
+
+Este trabalho consiste em implementar uma tabela de hashing para
+armazenar cadeias do alfabeto <tt>{a,b,...,z,A,B,...,Z,_}</tt>.  No
+máximo 5.000 cadeias de no máximo 250 caracteres estarão armazenadas
+na tabela ao mesmo tempo.
+
+<p>
+As colisões devem ser resolvidas usando sondagem com hashing duplo
+ou encadeamento na própria tabela.  Defina o tamanho e a função de
+hashing para a sua tabela.
+
+</p><p>
+Escolha também uma função de transformação de cadeias de caracteres em
+inteiros.  Não importa a forma como você faça para este trabalho, mas
+algumas funções são muito piores que outras em termos de espalhamento.
+Um exemplo de uma função que funciona bem é a função de hashing djb2
+abaixo.
+
+</p><pre>unsigned long djb2(unsigned char *str) {
+  unsigned long hash = 5381;
+  int c;
+  
+  while ((c = *str++))
+    hash = ((hash &lt;&lt; 5) + hash) + c; // hash * 32 + hash + c
+  
+  return hash;
+}
+</pre>
+
+<p>
+Cada linha da entrada para seu programa é iniciada por um caractere
+que pode ser seguido de um espaço e de uma chave.  Os caracteres podem
+ser i para inserir uma chave na tabela, b para buscar uma cadeia na
+tabela, r para remover uma cadeia da tabela e f para terminar o
+programa.
+
+</p><p>
+Quando uma cadeia é inserida na tabela ela recebe um identificador
+único.  O identificador de cada cadeia é atribuído seqüencialmente a partir
+de 0, sem reuso.  Cada chave deve ser inserida uma única vez.
+
+</p><p>
+Para cada busca pela cadeia c na tabela seu programa deve imprimir "c
+encontrada, id i" ou "nao encontrada" em uma linha, onde i é o
+identificador que c recebeu no momento em que foi inserida. As
+outras ações não geram saída.
+
+</p><p>
+Para a entrada
+
+</p><pre>i itdoesntmatter
+i thewaythatyoutakeit
+i itdoesntmatter
+i thewaythatyoumakeit
+b itdoesntmatteR
+b itdoesntmatter
+b thewaythatyoumakeit
+r thewaythatyoumakeit
+b thewaythatyoumakeit
+f
+</pre>
+
+<p>
+o programa deve produzir como saída
+  
+</p><pre>itdoesntmatteR nao encontrada
+itdoesntmatter encontrada, id 0
+thewaythatyoumakeit encontrada, id 2
+thewaythatyoumakeit nao encontrada
+</pre>
+<hr></form></div></div>
+
+</body></html>

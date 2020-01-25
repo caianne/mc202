@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0039)https://bug.ic.unicamp.br/cgi/sqtpm.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>sqtpm</title>
+<link href="https://bug.ic.unicamp.br/cgi/icon.png" rel="icon" type="image/png">
+<link rel="stylesheet" type="text/css" href="./06-auto-organizavel_files/sqtpm.css">
+</head>
+<body>
+<div id="wrapper"><div id="sidebar"><h1>sqtpm</h1><p style="margin-top:-15px"><small>[261026]</small></p><a href="javascript:;" onclick="window.history.go(-1); return false;">voltar</a></div><div id="content"><form method="post" action="https://bug.ic.unicamp.br/cgi/sqtpm.cgi" enctype="multipart/form-data" name="sqtpm"><script type="text/javascript" src="./06-auto-organizavel_files/sqtpm.js"></script><input type="hidden" name="action"><input type="hidden" name="arg1"><input type="hidden" name="arg2"><input type="hidden" name="arg3"><b>Trabalho:</b> 06-auto-organizavel<table><tbody><tr><td style="vertical-align:top">Linguagens: C<br>Data de abertura: 2019/09/19 10:00:00<br>Data limite para envio: 2019/09/25 18:00:00 (encerrado)<p><b>Último envio:</b> <a href="javascript:;" onclick="wrap(&#39;rep&#39;,&#39;06-auto-organizavel&#39;);">100%</a> em 2019/09/25 11:22:09<br>Envios: 6</p></td></tr></tbody></table><p></p><hr><h1>Lista auto-organizável</h1>
+
+<p>
+Em uma lista não há uma forma simples que facilite a recuperação dos
+registros armazenados nos nós: para recuperar o nó na posição i de uma
+lista é preciso percorrê-la a partir da cabeça, fazendo i acessos a
+nós.
+
+</p><p>
+Em muitas aplicações, as freqüências com que os registros são
+recuperados não são uniformes.  Faz sentido que os registros que são
+recuperados com maior freqüência sejam colocados mais próximos da
+cabeça, mas tipicamente tais freqüências não são conhecidas e mudam ao
+longo do tempo.
+
+</p><p> Estratégias de permutação podem ser aplicadas para reduzir o
+número de acessos a nós da lista durante a recuperação de registros em
+uma lista.  Tais estratégias movem o registro que acabou de ser
+recuperado um certo número de posições em direção ao início da lista, sem
+modificar a ordem relativa dos demais registros.  Listas acompanhadas
+de alguma estratégia desse tipo foram chamadas de <i>listas
+auto-organizáveis</i>.
+
+</p><p>
+Algumas estratégias de permutação foram propostas na literatura.  As
+mais usadas incluem:
+
+ </p><ul>
+   <li> Move-to-front (MTF): quando um registro é recuperado ele é
+   movido para o início da lista, se ele ainda não estiver no início
+   da lista.
+ 	
+   </li><li>Transpose (TR): quando um registro é recuperado ele é trocado
+   de posição com o registro que o precede, se ele ainda não estiver no
+   início da lista.
+ 	
+   </li><li>Count (C): cada registro tem um contador do número de acessos.
+   Quando um registro é recuperado o contador é incrementado e ele é
+   movido para uma posição anterior a todos os registros com contador
+   menor ou igual ao dele.
+ </li></ul>
+
+
+<p> 
+Por exemplo, suponha que a lista L tenha registros com
+chaves <tt>(1,2,3,4,5)</tt> nesta ordem e suponha que a seqüência de
+requisições para recuperar registros seja <tt>(4,2,2,4,3,1,3)</tt>.
+Abaixo aparecem as modificações na lista e os custos para cada
+estratégia.  O custo é medido como a soma do número de nós visitados
+para recuperar o registro com a chave requisitada, sem contar as
+operações realizadas na reorganização da lista.
+
+
+</p><p> <b>Move-to-front</b>
+  </p><ul> 
+    <li> Lista inicial <tt>L=(1,2,3,4,5)</tt>
+    </li><li> Requisição = 4. Custo = 4. Lista <tt>L=(4,1,2,3,5)</tt>
+    </li><li> Requisição = 2. Custo = 3. Lista <tt>L=(2,4,1,3,5)</tt>
+    </li><li> Requisição = 2. Custo = 1. Lista <tt>L=(2,4,1,3,5)</tt>
+    </li><li> Requisição = 4. Custo = 2. Lista <tt>L=(4,2,1,3,5)</tt>
+    </li><li> Requisição = 3. Custo = 4. Lista <tt>L=(3,4,2,1,5)</tt>
+    </li><li> Requisição = 1. Custo = 4. Lista <tt>L=(1,3,4,2,5)</tt>
+    </li><li> Requisição = 3. Custo = 2. Lista <tt>L=(3,1,4,2,5)</tt>
+  </li></ul>
+  Custo total = 4+3+1+2+4+4+2 = 20.
+  
+  
+<p> <b>Transpose</b>
+  </p><ul>
+    <li> Lista inicial <tt>L=(1,2,3,4,5)</tt>
+    </li><li> Requisição = 4. Custo = 4. Lista <tt>L=(1,2,4,3,5)</tt>
+    </li><li> Requisição = 2. Custo = 2. Lista <tt>L=(2,1,4,3,5)</tt>
+    </li><li> Requisição = 2. Custo = 1. Lista <tt>L=(2,1,4,3,5)</tt>
+    </li><li> Requisição = 4. Custo = 3. Lista <tt>L=(2,4,1,3,5)</tt>
+    </li><li> Requisição = 3. Custo = 4. Lista <tt>L=(2,4,3,1,5)</tt>
+    </li><li> Requisição = 1. Custo = 4. Lista <tt>L=(2,4,1,3,5)</tt>
+    </li><li> Requisição = 3. Custo = 4. Lista <tt>L=(2,4,3,1,5)</tt>
+  </li></ul>
+  Custo total = 4+2+1+3+4+4+4 = 22.
+  
+  
+<p> <b>Count</b>
+  </p><ul>
+    <li> Lista inicial <tt>L=(1,2,3,4,5)</tt>. Contador <tt>C=(0,0,0,0,0)</tt>
+    </li><li> Requisição = 4. Custo = 4. Lista <tt>L=(4,1,2,3,5)</tt>. Contador <tt>C=(1,0,0,0,0)</tt>
+    </li><li> Requisição = 2. Custo = 3. Lista <tt>L=(2,4,1,3,5)</tt>. Contador <tt>C=(1,1,0,0,0)</tt>
+    </li><li> Requisição = 2. Custo = 1. Lista <tt>L=(2,4,1,3,5)</tt>. Contador <tt>C=(2,1,0,0,0)</tt>
+    </li><li> Requisição = 4. Custo = 2. Lista <tt>L=(4,2,1,3,5)</tt>. Contador <tt>C=(2,2,0,0,0)</tt>
+    </li><li> Requisição = 3. Custo = 4. Lista <tt>L=(4,2,3,1,5)</tt>. Contador <tt>C=(2,2,1,0,0)</tt>
+    </li><li> Requisição = 1. Custo = 4. Lista <tt>L=(4,2,1,3,5)</tt>. Contador <tt>C=(2,2,1,1,0)</tt>
+    </li><li> Requisição = 3. Custo = 4. Lista <tt>L=(3,4,2,1,5)</tt>. Contador <tt>C=(2,2,2,1,0)</tt>
+  </li></ul>
+  Custo total = 4+3+1+2+4+4+4 = 22.
+
+
+<p>
+Uma outra estratégia é a move-ahead-k, que move um registro k posições
+em direção à cabeça depois que ele é acessado.  k pode ser definido
+como um número fixo, como um percentual da distância até a cabeça ou
+como outra função de distância.  Algumas outras estratégias usam
+combinações dessas que foram listadas.
+
+</p><p>
+Neste trabalho as estratégias MTF, TR e C devem ser comparadas.  Seu
+programa deve usar uma lista encadeada.  (Em um vetor uma estratégia
+como essas seria muito custosa porque seriam necessárias muitas
+movimentações dos dados.)
+
+
+</p><h3>Entrada</h3> A entrada para o programa são o número inteiro N de
+chaves na lista, entre 1 e 1000, o número inteiro R de requisições e
+uma seqüência de R requisições inteiras no intervalo [1,N].  Cada um
+dos acessos em R deve ser realizado em ordem, para MTF, TR e C, sempre
+a partir da lista que é iniciada contendo as chaves na
+ordem <tt>1,2,3,...,N</tt>.
+
+
+<h3>Saída</h3>
+A saída são três inteiros indicando os custos das estratégias MTF, TR
+e C, respectivamente.
+
+
+<h3>Exemplo</h3>
+
+<b>Entrada:</b>
+<pre>5
+7
+4 2 2 4 3 1 3
+</pre>
+
+<p>
+<b>Saída:</b>
+</p><pre>20 22 22
+</pre>
+
+
+<h3>Observações</h3>
+<ul>
+  <li>
+    Não deixe de liberar todos os nós da lista ao terminar o
+    processamento.
+</li><li>
+É interessante organizar o programa em três arquivos, um .h com as
+declarações de tipos e funções que manipulam a lista, um .c
+com as implementações das funções da lista e um outro .c com
+a função main e outras funções não relacionadas com a lista.
+  </li><li>
+    A estratégia count vai fazer com que os registros fiquem em ordem
+    não-crescente de contadores.  Isso permite que a movimentação seja
+    implementada fazendo apenas uma passada pela lista, ao invés de
+    duas como pode parecer necessário à primeira vista.  Depois de
+    fazer seu programa funcionar com duas passadas, um exercício
+    interessante é implementar com apenas uma.
+</li></ul> 
+<hr></form></div></div>
+
+</body></html>

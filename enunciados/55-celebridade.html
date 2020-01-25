@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0039)https://bug.ic.unicamp.br/cgi/sqtpm.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>sqtpm</title>
+<link href="https://bug.ic.unicamp.br/cgi/icon.png" rel="icon" type="image/png">
+<link rel="stylesheet" type="text/css" href="./55-celebridade_files/sqtpm.css">
+</head>
+<body>
+<div id="wrapper"><div id="sidebar"><h1>sqtpm</h1><p style="margin-top:-15px"><small>[261026]</small></p><a href="javascript:;" onclick="window.history.go(-1); return false;">voltar</a></div><div id="content"><form method="post" action="https://bug.ic.unicamp.br/cgi/sqtpm.cgi" enctype="multipart/form-data" name="sqtpm"><script type="text/javascript" src="./55-celebridade_files/sqtpm.js"></script><input type="hidden" name="action"><input type="hidden" name="arg1"><input type="hidden" name="arg2"><input type="hidden" name="arg3"><b>Trabalho:</b> 55-celebridade<table><tbody><tr><td style="vertical-align:top">Linguagens: C<br>Data de abertura: 2019/10/02 10:00:00<br>Data limite para envio: 2019/11/26 18:00:00 (encerrado)</td></tr></tbody></table><p></p><hr><h1>Celebridade</h1>
+
+Uma celebridade é uma pessoa que é conhecida por todos mas que não conhece ninguém.
+
+<p>
+Escreva um programa em C para determinar se um conjunto de até 1000
+pessoas tem uma celebridade.  A entrada é uma lista de frases da forma 
+
+</p><pre>pessoa conhece pessoa
+</pre>
+
+<p>
+sendo que o nome de uma pessoa tem no máximo 50 caracteres.  A saída é uma frase da forma 
+
+</p><pre>pessoa e' uma celebridade.
+</pre>
+
+ou da forma
+
+<pre>nao ha' celebridade.
+</pre>
+
+<h3>Exemplos</h3>
+
+Para a entrada
+
+<pre>Joao conhece Teresa
+Teresa conhece Raimundo
+Raimundo conhece Maria
+Maria conhece Joaquim
+Joaquim conhece Lili
+Lili conhece J. Pinto Fernandes
+</pre>
+
+a saída será 
+
+<pre>Nao ha' celebridade.
+</pre>
+
+
+Para a entrada
+
+<pre>Joao conhece Teresa
+Teresa conhece Raimundo
+Raimundo conhece Maria
+Maria conhece Joaquim
+Joaquim conhece Lili
+Lili conhece J. Pinto Fernandes
+Joao conhece Nina
+Teresa conhece Nina
+Raimundo conhece Nina
+Maria conhece Nina
+Joaquim conhece Nina
+Lili conhece Nina
+J. Pinto Fernandes conhece Nina
+</pre>
+
+a saída será
+
+<pre>Nina e' celebridade.
+</pre>
+
+
+<p>
+Sugestões:
+</p><ul>
+<li>
+Comece fazendo um programa que apenas lê uma linha de cada vez da entrada e imprime.
+</li><li>
+Depois adicione a funcionalidade para extrair os nomes de cada linha e apenas imprimir.
+</li><li>
+Finalmente adicione a funcionalidade para determinar se há ou não celebridade.
+</li></ul>
+
+
+
+<hr></form></div></div>
+
+</body></html>

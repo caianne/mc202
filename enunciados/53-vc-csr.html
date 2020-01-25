@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0039)https://bug.ic.unicamp.br/cgi/sqtpm.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>sqtpm</title>
+<link href="https://bug.ic.unicamp.br/cgi/icon.png" rel="icon" type="image/png">
+<link rel="stylesheet" type="text/css" href="./53-vc-csr_files/sqtpm.css">
+</head>
+<body>
+<div id="wrapper"><div id="sidebar"><h1>sqtpm</h1><p style="margin-top:-15px"><small>[261026]</small></p><a href="javascript:;" onclick="window.history.go(-1); return false;">voltar</a></div><div id="content"><form method="post" action="https://bug.ic.unicamp.br/cgi/sqtpm.cgi" enctype="multipart/form-data" name="sqtpm"><script type="text/javascript" src="./53-vc-csr_files/sqtpm.js"></script><input type="hidden" name="action"><input type="hidden" name="arg1"><input type="hidden" name="arg2"><input type="hidden" name="arg3"><b>Trabalho:</b> 53-vc-csr<table><tbody><tr><td style="vertical-align:top">Linguagens: C<br>Data de abertura: 2019/08/29 10:00:00<br>Data limite para envio: 2019/11/26 18:00:00 (encerrado)</td></tr></tbody></table><p></p><hr><h3>VC-CSR</h3>
+
+Uma matriz m x n é esparsa se tem proporcionalmente muitos zeros.
+"Muitos" não é uma quantidade definida claramente, mas em geral se a
+matriz tem um número de entradas não-zero proporcional a m + n então ela
+é considerada esparsa.
+
+<p>
+Por exemplo, suponha uma matriz de <tt>int</tt> 1.000 x 3.000 que tenha
+3.000 entradas não-zero.  Essa matriz é esparsa.  Ela ocupa 12.000.000
+bytes na memória, mas apenas 12.000 bytes não são zeros.
+
+</p><p>
+Uma forma mais econômica de armazenar uma matriz esparsa é o
+vetor-de-coordenadas.  Nessa representação, cada entrada não-zero é
+representada por uma tripla (i,&nbsp;j,&nbsp;M[i,j]) e tais triplas são
+armazenadas em um vetor.  Tipicamente (mas não obrigatoriamente) o
+vetor-de-coordenadas é mantido ordenado por i e, para o mesmo i,
+ordenado por j.
+
+</p><p>
+A matriz suposta previamente, com 3.000 não-zeros, seria armazenada em
+um vetor de 36.000 bytes.
+
+</p><p>
+Para recuperar a entrada M[i,j], é necessário fazer uma busca no vetor
+de coordenadas para encontrar a linha i e depois fazer uma busca para
+encontrar a coluna j.
+
+</p><p>
+Uma outra forma de representação de matrizes esparsas que permite
+recuperação mais rápida que o vetor-de-coordenadas é a CSR (compressed sparse row).
+
+</p><p>
+Seja M uma matriz m x n com k células diferentes de zero, com linhas e
+colunas indexadas a partir de 0.
+
+A representação CSR usa 3 vetores:
+</p><ul>
+<li>
+A, de tamanho k, armazenas as células não-zero de M por linhas.
+</li><li>
+C, de tamanho k, armazena a coluna de cada elemento de A.
+</li><li>
+R, de tamanho m+1, armazena a posição em A do primeiro elemento em
+cada linha não-vazia de M.
+</li><li>
+R[m] é igual a k.
+</li><li>
+Se a linha i estiver vazia então R[i] será igual a R[t], onde
+t é a primeira linha depois da linha i que não é vazia.  Se não houver
+tal t então R[i]=R[m].
+</li><li>
+R[i+1]-R[i] é o número de células não-zero na linha i.
+</li></ul>
+
+
+<p>
+Um elemento M[i,j] pode ser recuperado da seguinte forma:
+
+</p><ul>
+<li>
+Inspecionam-se R[i] e R[i+1] para determinar o intervalo ocupado pelos
+elementos da linha i em C (e também em A).
+</li><li>
+Se R[i] é igual a R[i+1] então M[i,j] é igual a zero.  Senão j é
+procurado em C[R[i]], ..., C[R[i+1]-1].
+</li><li>
+Se j existe em [C[R[i]], ..., C[R[i+1]-1] então o valor de A na
+mesma posição de C em que j foi encontrado é M[i,j].  Senão
+M[i,j] é igual a zero.
+</li></ul>
+
+
+<p>
+Por exemplo, a matriz 4 x 8
+
+</p><pre>0  0  0  0  2  0  6  5
+4  0  0  0  0  1  0  0
+0  0  0  0  0  0  0  0
+0  0  0  0  3  0  8  1
+</pre>
+
+é representada como um vetor-de-coordenadas da forma
+
+<pre>(0,4,2) (0,6,6) (0,7,5) (1,0,4) (1,5,1) (3,4,3) (3,6,8) (3,7,1)
+</pre>
+
+e é representada da seguinte forma em CSR
+
+<pre>A  =  2  6  5  4  1  3  8  1
+C  =  4  6  7  0  5  4  6  7
+R  =  0  3  5  5  8       
+</pre>
+
+
+
+<p>
+Escreva um programa para manipular uma matriz esparsa de inteiros M.
+Inicialmente seu programa deve ler um conjunto de k triplas (i,j,dado)
+e armazená-las em um vetor-de-coordenadas.  Depois deve converter o
+vetor de coordenadas em CSR.  Finalmente, o programa deve usar a
+representação CSR para recuperar entradas da matriz esparsa.
+
+</p><p>
+A entrada inicia-se com uma linha contendo o valor inteiro k, k&gt;0.
+Depois seguem-se k linhas contendo i, j e dado, i,j&#8805;0. As linhas
+seguintes têm i e j cada, i,j&#8805;0, e formam uma seqüência de
+coordenadas que devem ser usadas como consulta para recuperar um dado
+da matriz.  A seqüência de consultas é terminada por valores -1.
+
+</p><p>
+Para cada linha de consulta o programa deve imprimir o valor na célula
+correspondente, formatado como no exemplo abaixo.
+
+
+</p><h3>Exemplo</h3>
+
+Entrada
+
+<pre>9
+4 4 9
+4 5 8
+2 3 6
+2 4 5
+0 4 3
+0 5 7
+1 0 1
+2 2 2
+4 1 4
+3 3
+1 1
+5 5
+6 6
+2 2
+4 4
+7 7
+-1 -1
+</pre>
+
+Saída
+
+<pre>(3,3) = 0
+(1,1) = 0
+(5,5) = 0
+(6,6) = 0
+(2,2) = 2
+(4,4) = 9
+(7,7) = 0
+</pre>
+
+
+<h3>Observações</h3>
+<ul>
+<li>
+Seu programa deve usar apenas 4 vetores.
+</li><li>
+A memória alocada dinamicamente deve ser liberada pelo programa.
+</li></ul>
+<hr></form></div></div>
+
+</body></html>

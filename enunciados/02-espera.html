@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0039)https://bug.ic.unicamp.br/cgi/sqtpm.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>sqtpm</title>
+<link href="https://bug.ic.unicamp.br/cgi/icon.png" rel="icon" type="image/png">
+<link rel="stylesheet" type="text/css" href="./02-espera_files/sqtpm.css">
+</head>
+<body>
+<div id="wrapper"><div id="sidebar"><h1>sqtpm</h1><p style="margin-top:-15px"><small>[261026]</small></p><a href="javascript:;" onclick="window.history.go(-1); return false;">voltar</a></div><div id="content"><form method="post" action="https://bug.ic.unicamp.br/cgi/sqtpm.cgi" enctype="multipart/form-data" name="sqtpm"><script type="text/javascript" src="./02-espera_files/sqtpm.js"></script><input type="hidden" name="action"><input type="hidden" name="arg1"><input type="hidden" name="arg2"><input type="hidden" name="arg3"><b>Trabalho:</b> 02-espera<table><tbody><tr><td style="vertical-align:top">Linguagens: C<br>Data de abertura: 2019/08/22 10:00:00<br>Data limite para envio: 2019/08/28 18:00:00 (encerrado)<p><b>Último envio:</b> <a href="javascript:;" onclick="wrap(&#39;rep&#39;,&#39;02-espera&#39;);">100%</a> em 2019/08/28 14:51:58<br>Envios: 2</p></td></tr></tbody></table><p></p><hr>
+<h2>Correção</h2>
+
+O "gabarito" dos casos-de-teste tinha um erro que foi corrigido na noite de 24/08.
+
+<p>
+
+
+</p><h1>Espera no atendimento</h1>
+
+Uma loja tem uma fila única que distribui clientes entre os
+funcionários do atendimento.  Um funcionário atende apenas um cliente
+de cada vez.  No início do dia, todos os atendentes estão livres e a
+fila está vazia.  Escreva um programa para calcular informações sobre
+a espera dos clientes pelo atendimento.
+
+
+<h3>Entrada</h3>
+
+A primeira linha contém dois inteiros, C e N, separados por um
+espaço. C é o número de atendentes da loja e N é o número de clientes
+que virão naquele dia. C está no intervalo [1,10] e N está no
+intervalo [1,1000].
+
+Cada uma das N linhas seguintes terão informação sobre um cliente na
+forma de dois inteiros T e D separados por um espaço. T é o momento, em
+minutos a partir da abertura da loja, em que o cliente entra na fila e
+D é o tempo em minutos para atender o cliente.  T está no intervalo
+[0,300] e D está no intervalo [1,10].  As linhas estão ordenadas pelo
+momento de entrada dos clientes na fila.
+
+<h3>Saída</h3>
+
+A primeira linha da saída deve informar a espera média ao longo do
+dia, como ilustrado no exemplo abaixo.  A segunda linha deve informar
+o número de clientes que esperaram na fila por mais de 10 minutos.
+
+<h3>Exemplo</h3>
+
+Para a entrada
+
+<pre>1 20
+11 2
+40 2
+40 5
+44 9
+59 3
+62 5
+63 8
+63 9
+75 10
+99 8
+103 1
+103 7
+105 8
+110 6
+111 9
+126 8
+238 10
+239 9
+245 1
+249 4
+</pre>
+
+a saída será
+
+<pre>Espera media para 20 clientes: 6.1 minutos
+Numero de clientes que esperaram mais que 10 minutos: 5
+</pre>
+
+
+<h3>Sugestões</h3>
+<ul>
+  <li> Se parecer complicado, pense mais sobre o problema.  A solução é simples.
+  </li><li> Tente resolver com apenas um atendente, depois generalize a solução.
+</li></ul>
+
+
+<hr></form></div></div>
+
+</body></html>

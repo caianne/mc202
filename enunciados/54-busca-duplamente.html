@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0039)https://bug.ic.unicamp.br/cgi/sqtpm.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>sqtpm</title>
+<link href="https://bug.ic.unicamp.br/cgi/icon.png" rel="icon" type="image/png">
+<link rel="stylesheet" type="text/css" href="./54-busca-duplamente_files/sqtpm.css">
+</head>
+<body>
+<div id="wrapper"><div id="sidebar"><h1>sqtpm</h1><p style="margin-top:-15px"><small>[261026]</small></p><a href="javascript:;" onclick="window.history.go(-1); return false;">voltar</a></div><div id="content"><form method="post" action="https://bug.ic.unicamp.br/cgi/sqtpm.cgi" enctype="multipart/form-data" name="sqtpm"><script type="text/javascript" src="./54-busca-duplamente_files/sqtpm.js"></script><input type="hidden" name="action"><input type="hidden" name="arg1"><input type="hidden" name="arg2"><input type="hidden" name="arg3"><b>Trabalho:</b> 54-busca-duplamente<table><tbody><tr><td style="vertical-align:top">Linguagens: C<br>Data de abertura: 2019/09/23 10:00:00<br>Data limite para envio: 2019/11/26 18:00:00 (encerrado)</td></tr></tbody></table><p></p><hr><h1>Busca em lista duplamente encadeada</h1>
+
+Escreva um programa para construir uma lista duplamente encadeada de
+números inteiros e depois, dada uma posição da lista, retornar o
+elemento naquela posição.
+
+<p>
+O acesso a uma posição da lista deve ser feito de modo (levemente)
+otimizado, ou seja, o número de nós percorridos até o elemento buscado
+tem que ser o menor considerando 3 pontos de partida: a cabeça da
+lista, o rabo da lista e a posição do último elemento buscado.  No
+inicio do programa a posição do último elemento buscado é a cabeça da
+lista.
+
+</p><h3>Entrada</h3>
+
+A primeira linha da entrada é um inteiro m que informa o número de nós
+da lista.  As próximas m linhas são números inteiros que devem ser
+inseridos no fim da lista.  A próxima linha contém um inteiro n que
+representa o número de buscas que serão realizadas na lista. As n
+próximas linhas representarão as buscas. Cada busca é representada por
+um número inteiro (que varia de 0 até m-1) que representa a posição do
+elemento considerando a cabeça da lista como ponto de partida (a
+cabeça da lista é a posição 0).
+
+<h3>Saída</h3>
+
+A primeira linha da saída deve ter a impressão do conteúdo da lista ao
+término da inserção dos nós. As linhas seguintes devem conter, para
+cada busca, a impressão do conteúdo do nó solicitado seguido do número
+de nós percorridos para chegar ao nó.  (todo elemento da lista
+acessado na busca deve ser contabilizado, incluindo o elemento
+retornado).
+
+<h3>Exemplo</h3>
+
+Entrada:
+
+<pre>7
+10
+20
+30
+40
+50
+60
+70
+4
+4
+2
+3
+3
+</pre>
+
+Saída:
+
+<pre>10 20 30 40 50 60 70 
+50 3
+30 3
+40 2
+40 1
+</pre>
+
+
+<h3>Observações</h3>
+<ul>
+<li>
+Há um espaço antes do fim da primira linha de saída.
+</li><li>
+A lista e todos os nós dela devem ser desalocados antes do fim do programa.
+</li></ul>
+
+
+<hr></form></div></div>
+
+</body></html>

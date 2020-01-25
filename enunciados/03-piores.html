@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0039)https://bug.ic.unicamp.br/cgi/sqtpm.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>sqtpm</title>
+<link href="https://bug.ic.unicamp.br/cgi/icon.png" rel="icon" type="image/png">
+<link rel="stylesheet" type="text/css" href="./03-piores_files/sqtpm.css">
+</head>
+<body>
+<div id="wrapper"><div id="sidebar"><h1>sqtpm</h1><p style="margin-top:-15px"><small>[261026]</small></p><a href="javascript:;" onclick="window.history.go(-1); return false;">voltar</a></div><div id="content"><form method="post" action="https://bug.ic.unicamp.br/cgi/sqtpm.cgi" enctype="multipart/form-data" name="sqtpm"><script type="text/javascript" src="./03-piores_files/sqtpm.js"></script><input type="hidden" name="action"><input type="hidden" name="arg1"><input type="hidden" name="arg2"><input type="hidden" name="arg3"><b>Trabalho:</b> 03-piores<table><tbody><tr><td style="vertical-align:top">Linguagens: C<br>Data de abertura: 2019/08/29 10:00:00<br>Data limite para envio: 2019/09/04 18:00:00 (encerrado)<p><b>Último envio:</b> <a href="javascript:;" onclick="wrap(&#39;rep&#39;,&#39;03-piores&#39;);">100%</a> em 2019/09/04 17:13:44<br>Envios: 5</p></td></tr></tbody></table><p></p><hr><h1>As piores desculpas</h1>
+
+Professores frequentemente ouvem desculpas de alunos que não
+entregaram seus trabalhos.  Algumas são relatos de casualidades
+cotidianas, outras são apenas esfarrapadas.  Escreva um programa para
+escolher as piores desculpas segundo algumas palavras-chave.
+
+<h3>Entrada</h3>
+
+A entrada para o programa consiste de vários conjuntos de dados.  A
+linha 1 de cada conjunto tem dois inteiros. O primeiro (1 &#8804; K &#8804;
+20) define o número de palavras-chave.  O segundo (1 &#8804; E &#8804; 100)
+define o número de desculpas no conjunto.  As linhas 2 a K + 1 têm uma
+palavra-chave cada.  Todas as palavras-chave terão apenas caracteres
+alfabéticos minúsculos e não terão brancos.
+
+<p>
+As linhas K + 2 a K + E + 1 têm uma desculpa cada.  Cada desculpa
+poderá conter qualquer caractere alfanumérico maiúsculo ou minúsculo,
+espaços ou quaisquer dos sinais de pontuação ".,!? e não excederá 100
+caracteres de comprimento.  Nenhuma desculpa será formada apenas por
+espaços.
+
+</p><h3>Saída</h3>
+
+Para cada conjunto de entrada, seu programa você deve imprimir as
+piores desculpas do conjunto.  As piores desculpas são aquelas que
+contêm o maior número de ocorrências de palavras-chave.  Uma
+palavra-chave ocorre em uma desculpa se ela existir na desculpa de
+forma contígua e se for delimitada pelo início da linha, pelo fim da
+linha, por um caractere não alfabético ou por um espaço.
+
+<p>
+Para cada conjunto de entrada, seu programa deve imprimir uma única
+linha com o número do conjunto imediatamente após a cadeia "Conjunto
+de desculpas #".  As linhas seguintes devem) conter as piores
+desculpas, uma por linha, exatamente como aparece na entrada. Se
+houver mais de uma pior desculpa, seu programa deverá imprimi-las na
+ordem em que aparecem na entrada. Após cada conjunto de saída, seu
+programa deve imprimir uma linha em branco.
+
+</p><h3>Exemplo</h3>
+
+Para a entrada
+
+<pre>3 4
+despertador
+gato
+cachorro
+Meu despertador nao tocou e nao consegui chegar para a prova das 14 horas.
+Tive que levar meu gato para tomar banho no pet-shop.
+Meu cachorro comeu o fio do meu notebook. Depois comeu o DESPERTADOR.
+Minha mae nao me acordou a tempo.
+6 5
+gato
+pneu
+comeu
+despertador
+bode
+cachorro
+Meu gato comeu meu mouse.
+Meu bode comeu meu notebook.
+Meu disquete deu erro de leitura.
+O pneu do trem furou.
+O vento estava muito bom e tive que ir soltar pipas.
+</pre>
+
+A saída é
+
+<pre>Conjunto de desculpas #1
+Meu cachorro comeu o fio do meu notebook. Depois comeu o DESPERTADOR.
+
+Conjunto de desculpas #2
+Meu gato comeu meu mouse.
+Meu bode comeu meu notebook.
+
+</pre>
+
+e tem uma linha no final.
+
+<h3>Sugestões</h3>
+
+<ul>
+<li>
+Comece fazendo um programa que apenas lê a entrada e imprime, depois
+acrescente as demais funcionalidades.
+</li></ul>
+<hr></form></div></div>
+
+</body></html>

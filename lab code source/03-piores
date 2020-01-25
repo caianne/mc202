@@ -1,0 +1,54 @@
+/* 
+-----------------------------------------------------------------------------------------------------
+| Nome: Anne Feng Cai                                                                               |
+| ---------------------------------------------------------------------------------------------------
+*/
+
+#include <stdio.h>
+#include <strings.h>
+#include <string.h>
+
+int main() {
+    int k, e, entr, texto, posi, i, m = 1;
+    
+    while (scanf("%d %d", &k, &e) != EOF) {
+        int n= 0, aux = 0, quant = 0;
+        char palavra[20][101];
+        char desculpa[101];
+        char resposta[100][101];
+
+        for (entr = 0; entr < k; entr++) {
+            scanf("%s ", palavra[entr]);
+        }
+        for (entr = 0; entr < e; entr++) {
+            scanf(" %[^\n]s", desculpa);
+            
+            for (texto = 0; texto < k; texto++) {
+                for (i = 0; i < strlen(desculpa); i++) {
+                    posi = strncasecmp (&desculpa[i], palavra[texto], strlen(palavra[texto]));
+                    if (posi == 0) {
+                        quant++;
+                        i+=(strlen(palavra[texto])-1);
+                    }
+                }
+            }
+            if (aux < quant) {
+                n = 0;
+                strcpy(resposta[n], desculpa);
+                aux = quant;
+            }
+            else if (aux == quant) {
+                n+=1;
+                strcpy(resposta[n], desculpa);
+            }
+            quant = 0;
+        }
+        printf("Conjunto de desculpas #%d\n", m);
+        for (i = 0; i <= n; i++) {
+            printf("%s\n", resposta[i]);
+        }
+        printf("\n");
+        m++;
+    }
+    return 0;
+}
